@@ -14,19 +14,40 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".MyPageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IntakeAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".IntakeRecordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".StartActivity"
             android:exported="true"
             android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.DeFault">
-        </activity>
+            android:theme="@style/Theme.DeFault" />
     </application>
 
 </manifest>

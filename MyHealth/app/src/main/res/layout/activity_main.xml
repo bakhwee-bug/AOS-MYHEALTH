@@ -279,7 +279,7 @@
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 android:textStyle="bold"
-                android:background="@color/colorOnPrimary"/>
+                android:background="@color/colorPrimary"/>
         </LinearLayout>
     </LinearLayout>
         <!--운동기록-->
@@ -361,7 +361,7 @@
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 android:textStyle="bold"
-                android:background="@color/colorOnPrimary"/>
+                android:background="@color/colorPrimary"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
