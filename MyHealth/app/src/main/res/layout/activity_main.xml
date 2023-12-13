@@ -11,7 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -19,34 +20,268 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            app:title="@string/app_name"
-            />
-
+            app:title="@string/app_name" />
 
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <!-- Note: A RecyclerView can also be used -->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+<!--하나씩 이뤄가볼까요?-->
+    <LinearLayout
+        android:id="@+id/first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+        >
 
-        <!-- Scrollable content -->
         <TextView
             android:id="@+id/some_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/some_id"
-            android:textSize="22dp"
             android:gravity="top"
-            />
-    </androidx.core.widget.NestedScrollView>
+            android:text="@string/some_id"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/some_id_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/some_id_bottom"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22dp"
+            android:textStyle="bold"
 
+            app:layout_constraintTop_toBottomOf="@id/some_id" />
+    </LinearLayout>
+<!--인바디검사요약-->
+    <LinearLayout
+        android:id="@+id/second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="0dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="25dp"
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/first"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/summary_inbody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="@string/title_inbody"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/summary_bmi"
+                android:layout_width="104dp"
+                android:layout_height="111dp"
+                android:clipToOutline="true"
+                android:background="@drawable/component_2"
+                android:elevation="7.1dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/summary_bmi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_bmi"
+                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_bmi_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_bmi"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_bmi_ave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/summary_skeletalMuscle"
+                android:layout_width="104dp"
+                android:layout_height="111dp"
+                android:clipToOutline="true"
+                android:background="@drawable/component_2"
+                android:elevation="7.1dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/summary_skeletalMuscle_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_skeletalMuscle"
+                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_skeletalMuscle_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_skeletalMuscle"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_skeletalMuscle_ave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/summary_fatPer"
+                android:layout_width="104dp"
+                android:layout_height="111dp"
+                android:clipToOutline="true"
+                android:background="@drawable/component_2"
+                android:elevation="7.1dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/summary_fatPer_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_fatPer"
+                    android:textSize="12dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_fatPer_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/num_fatPer"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/summary_fatPer_ave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/average"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+<!--날짜-->
+    <LinearLayout
+        android:id="@+id/third"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="0dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="25dp"
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/second"
+        android:orientation="vertical">
+    </LinearLayout>
+    <!--식단기록-->
+    <LinearLayout
+        android:id="@+id/fourth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="0dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="25dp"
+        android:paddingTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/third"
+        android:orientation="vertical">
+        <!--제목-->
+        <TextView
+            android:id="@+id/summary_intake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="@string/title_intake"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/num_intake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToOutline="true"
+                android:background="@drawable/component_2"
+                android:elevation="7.1dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/today_intake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily_intake"
+                    android:textColor="@color/black"
+                    android:textSize="24dp" />
+                <TextView
+                    android:id="@+id/slash1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slash"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/target_intake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/targetCalorie"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/kcal1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kcal"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:text="@string/enter"
+                android:textColor="@color/white"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:background="@color/colorOnPrimary"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--운동기록-->
 </androidx.constraintlayout.widget.ConstraintLayout>

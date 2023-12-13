@@ -2,7 +2,24 @@
     <string name="app_name">MyHealth</string>
     <string name="myhealth">MyHealth</string>
     <string name="profile">profile</string>
-    <string name="some_id">박시윤님 하나씩 이뤄가볼까요? 😉</string>
-
+    <string name="some_id">박시윤님</string>
+    <string name="some_id_bottom">하나씩 이뤄가볼까요? 😉</string>
+    <string name="title_inbody">인바디검사 요약</string>
+    <string name="title_bmi">bmi 지수</string>
+    <string name="title_skeletalMuscle">골격근량 (kg)</string>
+    <string name="title_fatPer">체지방률 (%)</string>
+    <string name="title_intake">식단기록</string>
+    <string name="title_exercise">운동기록</string>
+    <string name="num_bmi">21</string>
+    <string name="num_skeletalMuscle">17.2</string>
+    <string name="num_fatPer">32.7</string>
+    <string name="average">표준</string>
+    <string name="average_above">표준이상</string>
+    <string name="average_below">표준이하</string>
+    <string name="daily_intake">0</string>
+    <string name="slash">/</string>
+    <string name="targetCalorie">2,032</string>
+    <string name="kcal">kcal</string>
+    <string name="enter">입력</string>
 </resources>
 
