@@ -21,5 +21,9 @@
     <string name="targetCalorie">2,032</string>
     <string name="kcal">kcal</string>
     <string name="enter">입력</string>
+    <string name="food_name">Title</string>
+    <string name="food_gram">2인분(150g)</string>
+    <string name="food_kcal">150kcal</string>
+    <string name="add">추가</string>
 </resources>
 

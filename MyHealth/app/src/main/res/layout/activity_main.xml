@@ -21,8 +21,6 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
             app:title="@string/app_name" />
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
 <!--하나씩 이뤄가볼까요?-->
@@ -83,6 +81,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="10dp"
+            android:clipToPadding="false"
             android:orientation="horizontal">
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -90,6 +90,7 @@
                 android:layout_width="104dp"
                 android:layout_height="111dp"
                 android:clipToOutline="true"
+                android:layout_margin="10dp"
                 android:background="@drawable/component_2"
                 android:elevation="7.1dp"
                 android:gravity="center"
@@ -124,6 +125,7 @@
                 android:layout_width="104dp"
                 android:layout_height="111dp"
                 android:clipToOutline="true"
+                android:layout_margin="10dp"
                 android:background="@drawable/component_2"
                 android:elevation="7.1dp"
                 android:gravity="center"
@@ -159,6 +161,7 @@
                 android:layout_height="111dp"
                 android:clipToOutline="true"
                 android:background="@drawable/component_2"
+                android:layout_margin="10dp"
                 android:elevation="7.1dp"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -226,6 +229,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            android:background="@color/white"
+            android:elevation="7.1dp"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -233,7 +238,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipToOutline="true"
-                android:background="@drawable/component_2"
                 android:elevation="7.1dp"
                 android:gravity="center"
                 android:orientation="horizontal">
@@ -308,6 +312,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
+            android:background="@color/white"
+            android:elevation="7.1dp"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -315,7 +321,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipToOutline="true"
-                android:background="@drawable/component_2"
                 android:elevation="7.1dp"
                 android:gravity="center"
                 android:orientation="horizontal">
