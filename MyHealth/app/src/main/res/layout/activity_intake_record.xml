@@ -74,6 +74,7 @@
         android:src="@drawable/add"
         android:contentDescription="@string/add"
         tools:layout_editor_absoluteX="339dp"
-        tools:layout_editor_absoluteY="659dp" />
+        tools:layout_editor_absoluteY="659dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

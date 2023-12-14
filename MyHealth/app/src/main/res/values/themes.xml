@@ -30,5 +30,16 @@
     <style name="CustomToolBar" parent="@style/Widget.AppCompat.Toolbar">
         <item name="titleTextColor">@color/colorPrimary</item>
     </style>
+    <style name="Blue" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="toolbarStyle">@style/WhiteTitle</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/colorPrimary</item>
 
+    </style>
+    <style name="WhiteTitle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/white</item>
+    </style>
 </resources>
