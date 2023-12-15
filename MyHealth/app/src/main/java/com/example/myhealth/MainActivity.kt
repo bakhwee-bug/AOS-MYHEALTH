@@ -6,9 +6,14 @@ import android.os.Looper
 import android.os.Handler
 import android.view.KeyEvent
 import android.widget.Toast
+import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
     private var doubleBackToExitPressedOnce = false
+    var token : String? = ""
+
+    var retrofit: Retrofit = RetrofitClient.getInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        token = intent.getStringExtra("token")
     }
 
 }

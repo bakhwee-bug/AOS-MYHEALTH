@@ -92,7 +92,6 @@ class LoginActivity : AppCompatActivity() {
                                         val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
                                             putExtra("token", token)
                                             putExtra("user_name", user?.userName)
-
                                         }
 
                                         alertDialog =AlertDialog.Builder(this@LoginActivity).run {
