@@ -83,7 +83,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:margin="20dp"
             android:clipToPadding="false"
             android:orientation="horizontal">
             <LinearLayout
@@ -245,7 +244,7 @@
             android:layout_margin="10dp"
             android:paddingVertical="20dp"
             android:paddingHorizontal="120dp"
-            android:elevation="5dp"
+            android:elevation="7.1dp"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
