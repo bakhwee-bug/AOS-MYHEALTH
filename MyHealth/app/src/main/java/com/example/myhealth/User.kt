@@ -25,3 +25,4 @@ data class User(
     val password: String,
     val nickName: String
 ): Serializable
+
