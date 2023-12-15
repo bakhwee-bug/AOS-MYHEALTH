@@ -9,7 +9,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         val retrofit = Retrofit.Builder()
             .baseUrl("https://example.com/") // 서버의 기본 URL을 지정합니다.
             .addConverterFactory(GsonConverterFactory.create()) // Gson 컨버터 팩토리를 추가합니다.
@@ -28,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
             // 예외 처리
             e.printStackTrace()
         }
+
 
 
     }
