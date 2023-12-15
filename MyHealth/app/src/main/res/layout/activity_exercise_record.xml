@@ -18,11 +18,13 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
-            style="@style/Blue"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/back"
-            app:title="@string/title_exercise" />
+            app:menu="@menu/top_app_bar_food_record"
+            app:title="@string/title_exercise"
+            app:titleTextColor="#FFFFFF"
+            />
 
 
     </com.google.android.material.appbar.AppBarLayout>

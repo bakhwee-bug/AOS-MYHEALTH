@@ -2,6 +2,7 @@
     <string name="app_name">MyHealth</string>
     <string name="myhealth">MyHealth</string>
     <string name="profile">profile</string>
+    <string name="close">닫기</string>
     <string name="some_id">박시윤님</string>
     <string name="some_id_bottom">하나씩 이뤄가볼까요? 😉</string>
     <string name="title_inbody">인바디검사 요약</string>
