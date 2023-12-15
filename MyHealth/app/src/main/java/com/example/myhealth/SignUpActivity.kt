@@ -1,9 +1,12 @@
 package com.example.myhealth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +19,14 @@ class SignUpActivity : AppCompatActivity() {
         .addConverterFactory(GsonConverterFactory.create()) // Gson 컨버터 팩토리를 추가합니다.
         .build()
 
-    val loginService = retrofit.create(LoginService::class.java)
+    val SignUpService = retrofit.create(SignUpService::class.java)
+
+    /*회원가입 버튼 클릭*/
+
+
+
+
+
+
 
 }
