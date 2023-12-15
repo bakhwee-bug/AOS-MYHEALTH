@@ -2,9 +2,11 @@ package com.example.myhealth
 
 import android.app.Activity
 import android.content.Intent
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
@@ -23,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://example.com/") // 서버의 기본 URL을 지정합니다.
+            .baseUrl("https://www.twoneone.store/") // 서버의 기본 URL을 지정합니다.
             .addConverterFactory(GsonConverterFactory.create()) // Gson 컨버터 팩토리를 추가합니다.
             .build()
 
@@ -39,9 +41,11 @@ class LoginActivity : AppCompatActivity() {
 
         /*로그인 버튼 클릭*/
         btn_login.setOnClickListener{
-            var userName = edittext1.text.toString()
-            var pw = edittext2.text.toString()
+            var userName = edittext1.text.toString().trim() //trim: 문자열 공백 제거
+            var pw = edittext2.text.toString().trim()
+            val data = LoginRequest(userName, pw)
 
+            /*빈칸이면 에러*/
             if(edittext1.text.isNullOrBlank()||edittext2.text.isNullOrBlank()){
                 alertDialog =AlertDialog.Builder(this@LoginActivity).run {
                     setTitle("에러")
@@ -50,8 +54,10 @@ class LoginActivity : AppCompatActivity() {
                     show()
                 }
             }else{
+                /*백엔드 통신*/
                 //로그인 요청
-                loginService.login(userName,pw).enqueue(object: Callback<ResponseData> {
+                loginService.login(data).enqueue(object: Callback<ResponseData> {
+                    /*통신 아예 X*/
                     override fun onFailure(call: Call<ResponseData>, t: Throwable) {
                         Log.e("LOGIN", t.message.toString())
                         alertDialog = AlertDialog.Builder(this@LoginActivity).run {
@@ -61,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                             show()
                         }
                     }
-
+                    /*통신O*/
                     override fun onResponse(
                         call: Call<ResponseData>, response: Response<ResponseData>
                     ) {
@@ -71,8 +77,6 @@ class LoginActivity : AppCompatActivity() {
                             Log.d("LOGIN", "httpStatus : " + login?.httpStatus)
                             Log.d("LOGIN", "message : " + login?.message)
                             Log.d("LOGIN", "data : " + login?.data)
-
-
 
                             val token = response.headers().values("Set-Cookie").toString()
                             Log.d("LOGIN", "token : " + token)
@@ -124,13 +128,11 @@ class LoginActivity : AppCompatActivity() {
                             })
 
                         }else{
-                            Log.d("LOGIN", "msg : Hmm.." )
                             Log.d("LOGIN", "result : 아이디 또는 비밀번호가 잘못되었습니다.")
-                            alertDialog =AlertDialog.Builder(this@LoginActivity).run {
-                                setTitle("error")
-                                setMessage("아이디 또는 비밀번호가 잘못되었습니다.")
-                                setPositiveButton("확인", null)
-                                show()
+                            when(response.code()){
+                                400-> Toast.makeText(this@LoginActivity, "요청 url 파라미터 오류",Toast.LENGTH_LONG).show()
+                                401-> Toast.makeText(this@LoginActivity, "패스워드 오류",Toast.LENGTH_LONG).show()
+                                404-> Toast.makeText(this@LoginActivity, "존재하지 않는 아이디",Toast.LENGTH_LONG).show()
                             }
                         }
 

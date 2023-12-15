@@ -20,7 +20,7 @@ object RetrofitClient {
                 .build()
 
             instance = Retrofit.Builder()
-                .baseUrl("https://www.twoneone.store")
+                .baseUrl("https://www.twoneone.store/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

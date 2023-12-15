@@ -26,5 +26,11 @@
     <string name="food_kcal">150kcal</string>
     <string name="add">추가</string>
     <string name="welcome">오신 것을 환영합니다!</string>
+    <string name="first">처음이신가요?</string>
+    <string name="login">로그인</string>
+    <string name="signup">회원가입</string>
+    <string name="nickname">닉네임</string>
+    <string name="id">아이디</string>
+    <string name="pw">비밀번호</string>
 </resources>
 

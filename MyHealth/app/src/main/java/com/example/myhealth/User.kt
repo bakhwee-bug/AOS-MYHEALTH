@@ -3,6 +3,7 @@ package com.example.myhealth
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+//백엔드로 전송
 data class LoginRequest(
     @SerializedName("userName") val userName: String,
     @SerializedName("password") val password: String
