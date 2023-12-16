@@ -22,6 +22,11 @@ class IntakeAddActivity : AppCompatActivity() {
 
 //        binding.btn.setOnClickListener{SerchData()}
     }
+
+
+
+
+
 /*
     private fun SerchData(){
         // 소프트 키보드 없애기

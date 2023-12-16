@@ -80,6 +80,7 @@
             android:textStyle="bold" />
         <!--bmi, 골격근, 체지방률 박스-->
         <LinearLayout
+            android:id="@+id/btn_inbody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -236,6 +237,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
         <LinearLayout
+            android:id="@+id/btn_food"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -243,7 +245,7 @@
             android:background="@drawable/rectangle_list"
             android:layout_margin="10dp"
             android:paddingVertical="20dp"
-            android:paddingHorizontal="120dp"
+            android:paddingHorizontal="115dp"
             android:elevation="7.1dp"
             >
             <LinearLayout
@@ -325,6 +327,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
         <LinearLayout
+            android:id="@+id/btn_exercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -332,7 +335,7 @@
             android:background="@drawable/rectangle_list"
             android:layout_margin="10dp"
             android:paddingVertical="20dp"
-            android:paddingHorizontal="120dp"
+            android:paddingHorizontal="115dp"
             android:elevation="7.1dp"
             >
             <LinearLayout

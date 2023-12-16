@@ -75,12 +75,20 @@ class LoginActivity : AppCompatActivity() {
                             Log.d("LOGIN", "message : " + login?.message)
                             Log.d("LOGIN", "data : " + login?.data)
 
-                            val token = response.headers().values("Set-Cookie").toString()
+                            //val token = response.headers().values("Set-Cookie").toString()
+                            //val token = response.headers()["Authorization"].toString()
+                            val token = response.body()?.data?.token
                             Log.d("LOGIN", "token : " + token)
 
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java).apply{
+                                putExtra("token", token)
+                            }
+                            startActivity(intent)
 
+
+/*
                             //유저 정보 가져오기
-                            val userservice : InfoActivity = retrofit.create(InfoActivity::class.java)
+                            val userservice : TokenActivity = retrofit.create(TokenActivity::class.java)
                             Log.e("Login:userservice", "userservice..")
                             val BearerToken = "Bearer $token"
                             userservice.requestUser(BearerToken).enqueue(object : Callback<User>{
@@ -94,16 +102,6 @@ class LoginActivity : AppCompatActivity() {
                                             putExtra("user_name", user?.userName)
                                         }
 
-                                        alertDialog =AlertDialog.Builder(this@LoginActivity).run {
-                                            setTitle(login!!.code)
-                                            setMessage(login?.message)
-                                            setPositiveButton("확인"){dialog, which->
-                                                dialog.dismiss()
-                                                finishAffinity()
-                                                startActivity(intent)
-                                            }
-                                            show()
-                                        }
                                     }
                                     else {
                                         //통신 실패
@@ -123,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
                                     Log.d("message: ", t.message.toString())
                                 }
                             })
-
+*/
                         }else{
                             Log.d("LOGIN", "result : 아이디 또는 비밀번호가 잘못되었습니다.")
                             when(response.code()){
