@@ -24,8 +24,15 @@
             android:exported="false" />
         <activity
             android:name=".IntakeAddActivity"
-            android:exported="false" />
-        <activity
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    <activity
             android:name=".IntakeRecordActivity"
             android:exported="false" />
         <activity
@@ -36,14 +43,9 @@
             android:exported="false" />
         <activity
             android:name=".StartActivity"
-            android:exported="true"
-            android:theme="@style/Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"
+            android:theme="@style/Splash"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

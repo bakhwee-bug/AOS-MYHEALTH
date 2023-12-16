@@ -41,7 +41,7 @@
             android:background="@drawable/rectangle_list"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/enter"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             />
     </LinearLayout>
 

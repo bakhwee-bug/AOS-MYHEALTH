@@ -7,13 +7,17 @@ import android.os.Looper
 import android.os.Handler
 import android.util.Log
 import android.view.KeyEvent
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
-import com.google.gson.Gson
+import androidx.appcompat.app.AlertDialog
 import retrofit2.Retrofit
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlinx.android.synthetic.main.activity_main.*
+
+
 import java.io.IOException
 
 
@@ -49,8 +53,6 @@ class MainActivity : AppCompatActivity() {
                             some_id.text = inbody?.user?.nickName.toString() + "님"
                         }
                     }
-
-
                 }
             }
 
@@ -134,8 +136,9 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+        //인바디 블록 누르면 입력 다이얼로그 생성
         btn_inbody.setOnClickListener{
-
+            showInbodyDialog()
         }
 
         //식단기록 블록 누르면 Record 페이지로 이동
@@ -145,25 +148,95 @@ class MainActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-        //운동기록 블록 누르면 Record 페이지로 이동
+        //운동기록 블록 누르면 입력 다이얼로그 생성
         btn_exercise.setOnClickListener{
-            val intent = Intent(this@MainActivity, ExerciseRecordActivity::class.java).apply {
-                putExtra("BearerToken", BearerToken)
-            }
-            startActivity(intent)
+            showExerciseDialog()
         }
 
         //앱바 누르면 마이페이지로 이동
         appBarLayout.setOnClickListener{
-            val intent = Intent(this@MainActivity, MyPageActivity::class.java).apply {
-                putExtra("BearerToken", BearerToken)
-            }
-            startActivity(intent)
+
         }
 
 
         /*setSupportActionBar(findViewById(R.id.appBarLayout))*/
 
+    }
+
+    private fun showExerciseDialog() {
+        // 다이얼로그를 만들기 위한 빌더를 생성합니다.
+        val builder = AlertDialog.Builder(this)
+
+        // 레이아웃 인플레이터를 가져옵니다.
+        val inflater = layoutInflater
+
+        // dialog_exercise_add.xml 파일을 인플레이트해서 뷰를 만듭니다.
+        val exerciseView = inflater.inflate(R.layout.dialog_exercise_add, null)
+
+        // 빌더에 뷰를 설정합니다.
+        builder.setView(exerciseView)
+
+        // 뷰에서 위젯을 찾습니다.
+        val editText1 = exerciseView.findViewById<EditText>(R.id.editText1)
+        val editText2 = exerciseView.findViewById<EditText>(R.id.editText2)
+        val editText3 = exerciseView.findViewById<EditText>(R.id.editText3)
+        val buttonSubmit = exerciseView.findViewById<Button>(R.id.buttonSubmit)
+
+        // 다이얼로그를 만들고 보여줍니다.
+        val dialog = builder.create()
+        dialog.show()
+
+        // 제출 버튼에 클릭 리스너를 설정합니다.
+        buttonSubmit.setOnClickListener {
+            val inputDate = editText1.text.toString()
+            val inputExerciseName = editText2.text.toString()
+            val inputCalorie1 = editText3.text.toString()
+           // val inputCalorie = inputCalorie1.toDouble()
+
+            // 입력값을 처리합니다.
+
+            // 다이얼로그를 닫습니다.
+            dialog.dismiss()
+
+        }
+    }
+
+    private fun showInbodyDialog() {
+        // 다이얼로그를 만들기 위한 빌더를 생성합니다.
+        val builder = AlertDialog.Builder(this)
+
+        // 레이아웃 인플레이터를 가져옵니다.
+        val inflater = layoutInflater
+
+        // dialog_inbody_add.xml 파일을 인플레이트해서 뷰를 만듭니다.
+        val inbodyView = inflater.inflate(R.layout.dialog_inbody_add, null)
+
+        // 빌더에 뷰를 설정합니다.
+        builder.setView(inbodyView)
+
+        // 뷰에서 위젯을 찾습니다.
+        val editText1 = inbodyView.findViewById<EditText>(R.id.editText1)
+        val editText2 = inbodyView.findViewById<EditText>(R.id.editText2)
+        val editText3 = inbodyView.findViewById<EditText>(R.id.editText3)
+        val buttonSubmit = inbodyView.findViewById<Button>(R.id.buttonSubmit)
+
+        // 다이얼로그를 만들고 보여줍니다.
+        val dialog = builder.create()
+        dialog.show()
+
+        // 제출 버튼에 클릭 리스너를 설정합니다.
+        buttonSubmit.setOnClickListener {
+            val input1 = editText1.text.toString()
+            val input2 = editText2.text.toString()
+            val input3 = editText3.text.toString()
+
+            // 입력값을 처리합니다.
+            // ...
+
+            // 다이얼로그를 닫습니다.
+            dialog.dismiss()
+
+        }
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
