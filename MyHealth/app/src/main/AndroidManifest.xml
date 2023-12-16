@@ -20,9 +20,6 @@
             android:name=".MyPageActivity"
             android:exported="false" />
         <activity
-            android:name=".ExerciseAddActivity"
-            android:exported="false" />
-        <activity
             android:name=".ExerciseRecordActivity"
             android:exported="false" />
         <activity

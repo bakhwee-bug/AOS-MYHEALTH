@@ -12,7 +12,9 @@ object RetrofitClient {
 
     fun getInstance() : Retrofit {
         if(instance == null){
+            // Build OkHttpClient
             var builder = OkHttpClient().newBuilder()
+
 
 
             var okHttpClient = builder

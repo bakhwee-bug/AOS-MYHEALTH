@@ -4,10 +4,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.Call
 
-
+//토큰
 interface InfoActivity {
     @GET("/users/info")
     fun requestUser(
-        @Header("access_token") accessToken: String?
+        @Header("Authorization") accessToken: String?
     ): Call<User>
 }

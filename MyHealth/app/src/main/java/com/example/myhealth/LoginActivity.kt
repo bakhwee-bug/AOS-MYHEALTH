@@ -81,9 +81,9 @@ class LoginActivity : AppCompatActivity() {
 
                             //유저 정보 가져오기
                             val userservice : InfoActivity = retrofit.create(InfoActivity::class.java)
-                            Log.e("Login:userservice", "이건 되나..")
-
-                            userservice.requestUser(token).enqueue(object : Callback<User>{
+                            Log.e("Login:userservice", "userservice..")
+                            val BearerToken = "Bearer $token"
+                            userservice.requestUser(BearerToken).enqueue(object : Callback<User>{
                                 override fun onResponse(call: Call<User>, response: Response<User>) {
                                     if(response.isSuccessful){
                                         //정상적으로 통신이 된 경우
@@ -109,6 +109,7 @@ class LoginActivity : AppCompatActivity() {
                                         //통신 실패
                                         try {
                                             val body = response.errorBody()!!.string()
+                                            Log.d("LOGIN", "token : " + token)
                                             Log.e("Login:User", "error - body : $body")
                                         } catch (e: IOException) {
                                             e.printStackTrace()
