@@ -1,5 +1,6 @@
 package com.example.myhealth
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
@@ -13,6 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlinx.android.synthetic.main.activity_main.*
+import java.io.IOException
 
 
 var token : String? = ""
@@ -30,8 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         val BearerToken = "Bearer $token"
         val callInbody = userservice.requestInBody(BearerToken)
-        val callIntake = userservice.requestIntake(BearerToken,"2023-12-16")
-
+        val callIntake = userservice.requestIntake(BearerToken, "2023-12-25")
+        val callExercise = userservice.requestExercise(BearerToken, "2023-12-25")
         //인바디 조회
         callInbody.enqueue(object : Callback<ResponseInbody>{
             override fun onResponse(call: Call<ResponseInbody>, response: Response<ResponseInbody>) {
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     var apiResponse = response.body()
                     when(apiResponse?.code){
                         200->{
-                            Log.d("MainActivity", apiResponse.message)
+                            Log.d("MainActivity_callInbody", apiResponse.message)
                             var inbody = apiResponse?.data
                             summary_bmi_num.text = inbody?.bmi.toString()
                             summary_skeletalMuscle_num.text = inbody?.bmi.toString()
@@ -61,31 +63,91 @@ class MainActivity : AppCompatActivity() {
         callIntake.enqueue(object : Callback<ResponseIntake>{
             override fun onResponse(call: Call<ResponseIntake>, response: Response<ResponseIntake>
             ) {
+                Log.d("MainActivity_callIntake", "여기까지됨")
                 if(response.isSuccessful){
                     var apiResponse = response.body()
                     when(apiResponse?.code){
                         200->{
-                            Log.d("MainActivity", apiResponse.message)
+                            Log.d("MainActivity_callIntake", apiResponse.message)
                             var intake = apiResponse?.data
                             //오늘 섭취 칼로리
                             today_intake.text = intake?.currentCalorie.toString()
                             //목표 칼로리
                             target_intake.text = intake?.targetCalorie.toString()
                         }
+                        400->{
+                            Log.d("MainActivity_callIntake", apiResponse.message)
+                        }
                     }
 
 
+                }else{
+                    //통신 실패
+                    try {
+                        val body = response.errorBody()!!.string()
+                        Log.e("Login:User", "error - body : $body")
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
             }
-
             override fun onFailure(call: Call<ResponseIntake>, t: Throwable) {
+                Log.d("MainActivity_callIntake", t.message.toString())
             }
         })
         //일일 운동 조회
+        callExercise.enqueue(object : Callback<ResponseExercise>{
+            override fun onResponse(call: Call<ResponseExercise>, response: Response<ResponseExercise>
+            ) {
+                Log.d("MainActivity_callExercise", "여기까지됨")
+                if(response.isSuccessful){
+                    var apiResponse = response.body()
+                    when(apiResponse?.code){
+                        200->{
+                            Log.d("MainActivity_callExercise", apiResponse.message)
+                            var exercise = apiResponse?.data
+                            //오늘 소모칼로리
+                            today_exercise.text = exercise?.currentCalorie.toString()
+                            //목표 칼로리
+                            target_exercise.text = exercise?.targetCalorie.toString()
+                        }
+                        400->{
+                            Log.d("MainActivity_callExercise", apiResponse.message)
+                        }
+                    }
+            }else{
+                    //통신 실패
+                    try {
+                        val body = response.errorBody()!!.string()
+                        Log.e("Login:User", "error - body : $body")
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
 
+            }
 
+            override fun onFailure(call: Call<ResponseExercise>, t: Throwable) {
+                Log.d("MainActivity_callExercise", t.message.toString())
+            }
+        })
 
+        //식단기록 블록 누르면 Add 페이지로 이동
+        btn_food.setOnClickListener{
+            val intent = Intent(this@MainActivity, IntakeRecordActivity::class.java).apply {
+                putExtra("BearerToken", BearerToken)
+            }
+            startActivity(intent)
+        }
+        //운동기록 블록 누르면 Add 페이지로 이동
+        btn_exercise.setOnClickListener{
+            val intent = Intent(this@MainActivity, ExerciseRecordActivity::class.java).apply {
+                putExtra("BearerToken", BearerToken)
+            }
+            startActivity(intent)
+        }
         setContentView(R.layout.activity_main)
+
 
 
         /*setSupportActionBar(findViewById(R.id.appBarLayout))*/
@@ -113,76 +175,110 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
         token = intent.getStringExtra("token")
         var retrofit: Retrofit = RetrofitClient.getInstance()
         val userservice : TokenActivity = retrofit.create(TokenActivity::class.java)
-
         val BearerToken = "Bearer $token"
-        val call = userservice.requestInBody(BearerToken)
-
-        /*인바디 조회*/
-        call.enqueue(object : Callback<ResponseInbody>{
+        val callInbody = userservice.requestInBody(BearerToken)
+        val callIntake = userservice.requestIntake(BearerToken, "2023-12-25")
+        val callExercise = userservice.requestExercise(BearerToken, "2023-12-25")
+        //인바디 조회
+        callInbody.enqueue(object : Callback<ResponseInbody>{
             override fun onResponse(call: Call<ResponseInbody>, response: Response<ResponseInbody>) {
-                Log.d("MainActivity", "onResponse")
-                Log.d("MainActivity", response.code().toString())
                 if(response.isSuccessful){
-                    Log.d("MainActivity", "isSuccessful")
                     var apiResponse = response.body()
                     when(apiResponse?.code){
                         200->{
-                            Log.d("MainActivity", apiResponse.message)
+                            Log.d("MainActivity_callInbody", apiResponse.message)
                             var inbody = apiResponse?.data
                             summary_bmi_num.text = inbody?.bmi.toString()
                             summary_skeletalMuscle_num.text = inbody?.bmi.toString()
                             summary_fatPer_num.text = inbody?.bmi.toString()
                             some_id.text = inbody?.user?.nickName.toString() + "님"
-
-
                         }
                     }
 
 
                 }
             }
+
             override fun onFailure(call: Call<ResponseInbody>, t: Throwable) {
-                Log.d("MainActivity", "onFailure")
                 Toast.makeText(this@MainActivity, "통신 실패", Toast.LENGTH_SHORT).show()
             }
 
         })
-
-        /*섭취 조회*/
-        call.enqueue(object : Callback<ResponseInbody>{
-            override fun onResponse(call: Call<ResponseInbody>, response: Response<ResponseInbody>) {
-                Log.d("MainActivity", "onResponse")
-                Log.d("MainActivity", response.code().toString())
+        //일일 섭취량 조회
+        callIntake.enqueue(object : Callback<ResponseIntake>{
+            override fun onResponse(call: Call<ResponseIntake>, response: Response<ResponseIntake>
+            ) {
+                Log.d("MainActivity_callIntake", "여기까지됨")
                 if(response.isSuccessful){
-                    Log.d("MainActivity", "isSuccessful")
                     var apiResponse = response.body()
                     when(apiResponse?.code){
                         200->{
-                            Log.d("MainActivity", apiResponse.message)
-                            var inbody = apiResponse?.data
-                            summary_bmi_num.text = inbody?.bmi.toString()
-                            summary_skeletalMuscle_num.text = inbody?.bmi.toString()
-                            summary_fatPer_num.text = inbody?.bmi.toString()
-                            some_id.text = inbody?.user?.nickName.toString() + "님"
-
-
+                            Log.d("MainActivity_callIntake", apiResponse.message)
+                            var intake = apiResponse?.data
+                            //오늘 섭취 칼로리
+                            today_intake.text = intake?.currentCalorie.toString()
+                            //목표 칼로리
+                            target_intake.text = intake?.targetCalorie.toString()
+                        }
+                        400->{
+                            Log.d("MainActivity_callIntake", apiResponse.message)
                         }
                     }
 
 
+                }else{
+                    //통신 실패
+                    try {
+                        val body = response.errorBody()!!.string()
+                        Log.e("Login:User", "error - body : $body")
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
             }
-            override fun onFailure(call: Call<ResponseInbody>, t: Throwable) {
-                Log.d("MainActivity", "onFailure")
-                Toast.makeText(this@MainActivity, "통신 실패", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<ResponseIntake>, t: Throwable) {
+                Log.d("MainActivity_callIntake", t.message.toString())
+            }
+        })
+        //일일 운동 조회
+        callExercise.enqueue(object : Callback<ResponseExercise>{
+            override fun onResponse(call: Call<ResponseExercise>, response: Response<ResponseExercise>
+            ) {
+                Log.d("MainActivity_callExercise", "여기까지됨")
+                if(response.isSuccessful){
+                    var apiResponse = response.body()
+                    when(apiResponse?.code){
+                        200->{
+                            Log.d("MainActivity_callExercise", apiResponse.message)
+                            var exercise = apiResponse?.data
+                            //오늘 소모칼로리
+                            today_exercise.text = exercise?.currentCalorie.toString()
+                            //목표 칼로리
+                            target_exercise.text = exercise?.targetCalorie.toString()
+                        }
+                        400->{
+                            Log.d("MainActivity_callExercise", apiResponse.message)
+                        }
+                    }
+                }else{
+                    //통신 실패
+                    try {
+                        val body = response.errorBody()!!.string()
+                        Log.e("Login:User", "error - body : $body")
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+
             }
 
+            override fun onFailure(call: Call<ResponseExercise>, t: Throwable) {
+                Log.d("MainActivity_callExercise", t.message.toString())
+            }
         })
-        /*운동 조회*/
     }
 
 }

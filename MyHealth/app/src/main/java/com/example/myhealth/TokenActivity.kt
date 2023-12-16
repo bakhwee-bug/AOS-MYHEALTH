@@ -4,6 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Query
 
 //토큰
 interface TokenActivity {
@@ -23,14 +24,14 @@ interface TokenActivity {
     @GET("/api/exercise/daily")
     fun requestExercise(
         @Header("Authorization") accessToken: String?,
-        @Body jsonParams : String?
-    ): Call<Exercise>
+        @Query("date") date: String?,
+    ): Call<ResponseExercise>
 
     /*일일 섭취 조회*/
     @GET("/api/intake/daily")
     fun requestIntake(
         @Header("Authorization") accessToken: String?,
-        @Body jsonParams : String?
+        @Query("date") date: String?,
     ): Call<ResponseIntake>
 
     /*프로필조회*/

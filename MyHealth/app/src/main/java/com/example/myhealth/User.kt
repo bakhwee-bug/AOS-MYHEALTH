@@ -8,10 +8,7 @@ data class LoginRequest(
     @SerializedName("userName") val userName: String,
     @SerializedName("password") val password: String
 )
-//인바디, 섭취 조회할 때
-data class Daily(
-    val data: String
-): Serializable
+
 
 //받는 data
 data class ResponseData(
@@ -42,6 +39,27 @@ data class ResponseIntake(
         val intakes: List<Intake>
     ) {
         data class Intake(
+            val id: Int,
+            val content: String,
+            val calorie: Double
+        )
+    }
+}
+
+data class ResponseExercise(
+    val code: Int,
+    val httpStatus: String,
+    val message: String,
+    val data: Calorie
+) {
+    data class Calorie(
+        val userName: String,
+        val date: String,
+        val targetCalorie: Double,
+        val currentCalorie: Double,
+        val exercises: List<Exercise>
+    ) {
+        data class Exercise(
             val id: Int,
             val content: String,
             val calorie: Double
