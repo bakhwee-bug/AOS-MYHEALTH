@@ -23,7 +23,12 @@ class IntakeAddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.btn.setOnClickListener{searchPublicApi("고구마")}
+
+
+        binding.btn.setOnClickListener{
+            val searchFoodName = inputFoodName.getText().toString()
+            Log.e("IntakeAddActivity", searchFoodName)
+            searchPublicApi(searchFoodName)}
     }
 
     fun searchPublicApi(productName: String) {
@@ -42,8 +47,9 @@ class IntakeAddActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val data = response.body()
-                        // 성공적으로 데이터를 받았을 때의 처리를 작성해주세요.
+                        // 성공적으로 데이터를 받았을 때의 처리를 작성
                         result.text=data.toString()
+                        Log.e("IntakeAddActivity", "값 불러오기 성공")
 
                     }else{
                         //통신 실패
