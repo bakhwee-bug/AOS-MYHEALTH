@@ -85,43 +85,6 @@ class LoginActivity : AppCompatActivity() {
                             }
                             startActivity(intent)
 
-
-/*
-                            //유저 정보 가져오기
-                            val userservice : TokenActivity = retrofit.create(TokenActivity::class.java)
-                            Log.e("Login:userservice", "userservice..")
-                            val BearerToken = "Bearer $token"
-                            userservice.requestUser(BearerToken).enqueue(object : Callback<User>{
-                                override fun onResponse(call: Call<User>, response: Response<User>) {
-                                    if(response.isSuccessful){
-                                        //정상적으로 통신이 된 경우
-                                        Log.e("Login:onResponse", "유저서비스의 리퀘스트유저")
-                                        val user = response.body()
-                                        val intent = Intent(this@LoginActivity, MainActivity::class.java).apply {
-                                            putExtra("token", token)
-                                            putExtra("user_name", user?.userName)
-                                        }
-
-                                    }
-                                    else {
-                                        //통신 실패
-                                        try {
-                                            val body = response.errorBody()!!.string()
-                                            Log.d("LOGIN", "token : " + token)
-                                            Log.e("Login:User", "error - body : $body")
-                                        } catch (e: IOException) {
-                                            e.printStackTrace()
-                                        }
-                                    }
-                                }
-
-                                override fun onFailure(call: Call<User>, t: Throwable) {
-                                    //통신 실패
-                                    Log.d("Login: User","에러: "+t.message.toString())
-                                    Log.d("message: ", t.message.toString())
-                                }
-                            })
-*/
                         }else{
                             Log.d("LOGIN", "result : 아이디 또는 비밀번호가 잘못되었습니다.")
                             when(response.code()){

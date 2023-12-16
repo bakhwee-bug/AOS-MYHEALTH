@@ -132,22 +132,34 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        //식단기록 블록 누르면 Add 페이지로 이동
+        setContentView(R.layout.activity_main)
+
+        btn_inbody.setOnClickListener{
+
+        }
+
+        //식단기록 블록 누르면 Record 페이지로 이동
         btn_food.setOnClickListener{
             val intent = Intent(this@MainActivity, IntakeRecordActivity::class.java).apply {
                 putExtra("BearerToken", BearerToken)
             }
             startActivity(intent)
         }
-        //운동기록 블록 누르면 Add 페이지로 이동
+        //운동기록 블록 누르면 Record 페이지로 이동
         btn_exercise.setOnClickListener{
             val intent = Intent(this@MainActivity, ExerciseRecordActivity::class.java).apply {
                 putExtra("BearerToken", BearerToken)
             }
             startActivity(intent)
         }
-        setContentView(R.layout.activity_main)
 
+        //앱바 누르면 마이페이지로 이동
+        appBarLayout.setOnClickListener{
+            val intent = Intent(this@MainActivity, MyPageActivity::class.java).apply {
+                putExtra("BearerToken", BearerToken)
+            }
+            startActivity(intent)
+        }
 
 
         /*setSupportActionBar(findViewById(R.id.appBarLayout))*/
