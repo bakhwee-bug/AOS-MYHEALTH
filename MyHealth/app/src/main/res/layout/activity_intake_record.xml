@@ -35,6 +35,7 @@
        android:layout_height="match_parent"
        android:layout_marginHorizontal="20dp"
        android:layout_marginTop="70dp"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
        app:layout_constraintTop_toBottomOf="@id/appBarLayout"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -49,6 +50,8 @@
         android:contentDescription="@string/add"
         tools:layout_editor_absoluteX="339dp"
         tools:layout_editor_absoluteY="659dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

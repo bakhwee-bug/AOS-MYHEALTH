@@ -1,9 +1,7 @@
 package com.example.myhealth
 
-import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.Call
-import retrofit2.http.Query
+import retrofit2.http.*
 
 //토큰
 interface TokenActivity {
@@ -39,4 +37,36 @@ interface TokenActivity {
         @Header("Authorization") accessToken: String?
     ): Call<Profile>
 
+    /*섭취 등록*/
+    @POST("/api/intake/task")
+    fun eatFood(
+        @Header("Authorization") accessToken: String?,
+        @Body DaConCal: DaConCal
+        ):Call<ResponseData>
+
+    /*운동 등록*/
+    @POST("/api/exercise/task")
+    fun doExercise(
+        @Header("Authorization") accessToken: String?,
+        @Body DaConCal: DaConCal
+    ):Call<ResponseData>
+
+    /*인바디 업데이트*/
+    @PUT("/api/users/updateInbody")
+    fun updateInbody(
+        @Header("Authorization") accessToken: String,
+        @Body inbodyData: InbodyData
+    ): Call<ResponseInbody>
+
+    /*섭취 삭제*/
+    @DELETE("/api/intake/task")
+    fun deleteIntakeTask(
+        @Header("Authorization") accessToken: String
+    ): Call<ResponseInbody>
+
+    /*운동 삭제*/
+    @DELETE("/api/exercise/task")
+    fun deleteExerciseTask(
+        @Header("Authorization") accessToken: String
+    ): Call<ResponseInbody>
 }

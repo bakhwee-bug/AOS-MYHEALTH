@@ -226,20 +226,19 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
+
         <LinearLayout
             android:id="@+id/btn_food"
-            android:layout_width="wrap_content"
+            android:layout_width="324dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@drawable/rectangle_list"
             android:layout_margin="10dp"
-            android:paddingVertical="20dp"
-            android:paddingHorizontal="115dp"
-            android:elevation="7.1dp"
-            >
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@drawable/rectangle_list"
+            android:elevation="5.1dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="20dp">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/num_intake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -255,22 +254,22 @@
                     android:text="@string/daily_intake"
                     android:textColor="@color/black"
                     android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/slash1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/slash"
-                    android:textSize="15dp"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="15dp" />
+
                 <TextView
                     android:id="@+id/target_intake"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/targetCalorie"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
-                    />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:id="@+id/kcal1"
@@ -285,14 +284,13 @@
                 android:id="@+id/btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:text="@string/enter"
-                android:textColor="@color/white"
-                android:textSize="10dp"
                 android:background="@drawable/rectangle1"
                 android:backgroundTint="@color/colorPrimary"
+                android:gravity="top"
                 android:paddingHorizontal="18dp"
-                />
+                android:text="@string/enter"
+                android:textColor="@color/white"
+                android:textSize="10dp" />
         </LinearLayout>
     </LinearLayout>
         <!--운동기록-->
@@ -318,15 +316,14 @@
             android:textStyle="bold" />
         <LinearLayout
             android:id="@+id/btn_exercise"
-            android:layout_width="wrap_content"
+            android:layout_width="324dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/rectangle_list"
             android:layout_margin="10dp"
             android:paddingVertical="20dp"
-            android:paddingHorizontal="115dp"
-            android:elevation="7.1dp"
+            android:elevation="5.1dp"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"

@@ -36,7 +36,7 @@ data class ResponseIntake(
         val date: String,
         val targetCalorie: Double,
         val currentCalorie: Double,
-        val intakes: List<Intake>
+        val intakes: MutableList<Intake>
     ) {
         data class Intake(
             val id: Int,
@@ -57,7 +57,7 @@ data class ResponseExercise(
         val date: String,
         val targetCalorie: Double,
         val currentCalorie: Double,
-        val exercises: List<Exercise>
+        val exercises: MutableList<Exercise>
     ) {
         data class Exercise(
             val id: Int,
@@ -66,13 +66,6 @@ data class ResponseExercise(
         )
     }
 }
-
-
-data class ErrorResponse(
-    val errorName: String,
-    val errorCode: Int,
-    val message: String
-): Serializable
 
 
 data class Data(
@@ -109,3 +102,16 @@ data class Profile(
     val user: User
 )
 
+//개별 섭취, 운동 등록할 때 Body값
+data class DaConCal(
+    val date: String,
+    val content: String,
+    val calorie: Double
+)
+
+//인바디업데이트할때
+data class InbodyData(
+    val bmi: Double,
+    val skeletalMuscle: Double,
+    val fatPer: Double
+)
