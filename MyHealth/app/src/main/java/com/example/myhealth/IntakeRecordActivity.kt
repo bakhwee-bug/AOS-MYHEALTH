@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import com.example.myhealth.databinding.ActivityIntakeRecordBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -49,9 +51,36 @@ class IntakeRecordActivity : AppCompatActivity() {
                     when(apiResponse?.code){
                         200->{
                             Log.d("IntakeRecordActivity_callIntake", apiResponse.message)
+                            Log.d("IntakeRecordActivity_callIntake", apiResponse.data.toString())
                             var intake = apiResponse?.data?.intakes
-                            binding.myRecyclerView.adapter =
-                                intake?.let { MyAdapter2(this@IntakeRecordActivity, it) }
+                            val listAdapter = intake?.let {
+                                MyAdapter2(this@IntakeRecordActivity,
+                                    it
+                                )
+                            }
+                            binding.myRecyclerView.adapter =listAdapter
+                            listAdapter?.setItemClickListener(object : MyAdapter2.OnItemClickListener{
+                                override fun onClick(v: View, position: Int) {
+                                    Log.d("블ㄹ록 선택", "삭제시작")
+                                    val deleteFood = userservice.deleteIntakeTask(BearerToken,
+                                        intake?.get(position)!!.id
+                                    )
+                                    deleteFood.enqueue(object : Callback<DelFood>{
+                                        override fun onResponse(call: Call<DelFood>, response: Response<DelFood>
+                                        ) {
+                                            Toast.makeText(binding.root.context, "삭제했습니다", Toast.LENGTH_SHORT).show()
+                                            Log.d("IntakeRecoedActivity_errorBody", response.raw().toString())
+                                            //화면 refresh
+                                            finish()
+                                            startActivity(intent)
+                                        }
+
+                                        override fun onFailure(call: Call<DelFood>, t: Throwable) {
+                                            Toast.makeText(binding.root.context, "삭제 실패", Toast.LENGTH_SHORT).show()                                        }
+                                    })
+                                }
+                            })
+
                             Log.e("IntakeRecordActivity_callIntake", "값 불러오기 성공")
                         }
                         400->{

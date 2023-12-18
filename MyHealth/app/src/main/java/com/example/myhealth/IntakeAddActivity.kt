@@ -83,7 +83,7 @@ class IntakeAddActivity : AppCompatActivity() {
                                     calorie = eatFoodCal
                                 )
                                 Log.d("IntakeAddActivity_onClick", dateContentCal.toString())
-                                //POST요청
+                                //POST요청(식품을 내 기록에 추가)
                                 val service2 = retrofit2.create(TokenActivity::class.java)
                                 service2.eatFood(BearerToken, dateContentCal).enqueue(object : Callback<ResponseData>{
                                     override fun onResponse(

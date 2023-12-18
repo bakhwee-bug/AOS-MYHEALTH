@@ -61,12 +61,14 @@ interface TokenActivity {
     /*섭취 삭제*/
     @DELETE("/api/intake/task")
     fun deleteIntakeTask(
-        @Header("Authorization") accessToken: String
-    ): Call<ResponseInbody>
+        @Header("Authorization") accessToken: String,
+        @Query("id") id: Int,
+    ): Call<DelFood>
 
     /*운동 삭제*/
     @DELETE("/api/exercise/task")
     fun deleteExerciseTask(
         @Header("Authorization") accessToken: String
-    ): Call<ResponseInbody>
+
+    ): Call<DelFood>
 }

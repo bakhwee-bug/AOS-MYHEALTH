@@ -66,7 +66,22 @@ class MyAdapter2(var context: Context, var items: MutableList<ResponseIntake.Cal
         val item:ResponseIntake.Calorie.Intake=items[position]
         holder.binding.foodTitle.text=item.content
         holder.binding.foodKcal.text="${item.calorie.toString()}kcal"
+        //(1)리스트 내 항목 클릭 시 onClick호출
+        holder.itemView.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
+    // (2) 리스너 인터페이스
+    interface OnItemClickListener{
+        fun onClick(v: View, position: Int)
+    }
+    // (3) 외부에서 클릭 시 이벤트 설정
+    fun setItemClickListener(onItemClickListener: OnItemClickListener){
+        this.itemClickListener = onItemClickListener
+    }
+
+    //(4) setItemClickListener로 설정한 함수 실행
+    private lateinit var itemClickListener : OnItemClickListener
 
 
 }

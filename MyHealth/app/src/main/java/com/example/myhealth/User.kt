@@ -92,7 +92,12 @@ data class Exercise(
     val calorie: Double
 )
 
-
+data class DelFood(
+    val code: Int,
+    val httpStatus: String,
+    val message: String,
+    val data: Profile
+): Serializable
 data class Profile(
     val id: Int,
     val birth: String,
