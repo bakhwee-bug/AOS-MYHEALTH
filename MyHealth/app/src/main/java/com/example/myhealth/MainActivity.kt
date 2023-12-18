@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.time.LocalDate
 
-var daily : String = "2023-12-25"
+var daily : String = "2023-12-18"
 var token : String? = ""
 
 class MainActivity : AppCompatActivity() {
@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity() {
         dialog.setOnDismissListener {
             var retrofit: Retrofit = RetrofitClient.getInstance()
             val userservice : TokenActivity = retrofit.create(TokenActivity::class.java)
-            val callExercise = userservice.requestExercise(BearerToken, "2023-12-25")
+            val callExercise = userservice.requestExercise(BearerToken, "daily")
             //일일 운동 조회
             callExercise.enqueue(object : Callback<ResponseExercise>{
                 override fun onResponse(call: Call<ResponseExercise>, response: Response<ResponseExercise>
@@ -406,8 +406,8 @@ class MainActivity : AppCompatActivity() {
         val userservice : TokenActivity = retrofit.create(TokenActivity::class.java)
         val BearerToken = "Bearer $token"
         val callInbody = userservice.requestInBody(BearerToken)
-        val callIntake = userservice.requestIntake(BearerToken, "2023-12-25")
-        val callExercise = userservice.requestExercise(BearerToken, "2023-12-25")
+        val callIntake = userservice.requestIntake(BearerToken, daily)
+        val callExercise = userservice.requestExercise(BearerToken, daily)
         //인바디 조회
         callInbody.enqueue(object : Callback<ResponseInbody>{
             override fun onResponse(call: Call<ResponseInbody>, response: Response<ResponseInbody>) {
